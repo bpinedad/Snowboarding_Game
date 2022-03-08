@@ -5,16 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class FinishLine : MonoBehaviour
 {
-    [SerializeField] float reloadDelay = 1f;
+    [SerializeField] float reloadDelay = 5f;
     [SerializeField] ParticleSystem finishEffect;
+    SurfaceEffector2D surfaceEffector2D;
     int level = 0;
+
+    void Start(){
+        surfaceEffector2D = FindObjectOfType<SurfaceEffector2D>();
+    }
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
             finishEffect.Play();
-            level = 1;
+            surfaceEffector2D.speed /= 2;
+            GetComponent<AudioSource>().Play();
             Invoke("ReloadLevel", reloadDelay);
-
+            
         }    
     }
 
