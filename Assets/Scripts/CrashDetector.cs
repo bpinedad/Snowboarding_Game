@@ -9,6 +9,7 @@ public class CrashDetector : MonoBehaviour
     [SerializeField] ParticleSystem dieEffect;
     [SerializeField] ParticleSystem snowEffect;
     bool isAlive = true;
+    int level = 0;
 
     void OnTriggerEnter2D (Collider2D other){
         if (other.tag == "Ground"){
@@ -33,6 +34,6 @@ public class CrashDetector : MonoBehaviour
     }
 
     void ReloadLevel(){
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(level);
     }
 }
